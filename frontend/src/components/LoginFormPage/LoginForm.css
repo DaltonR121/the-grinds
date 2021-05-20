@@ -1,0 +1,11 @@
+.login__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    position: relative;
+    top: 130px;
+    max-width: 45%;
+}
+
+.button {}

@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.nav__div {
+  display: inline-flex;
+  height: 5vh;
+  margin-top: 10px;
+}
+
+.leftNav__div, .rightNav__div {
+  display: flex;
+  width: 50vw;
+}
+
+.leftNav__div h1 {
+  margin-left: 40px;
+  align-self: center;
+}
+
+.rightNav__div {
+  justify-content: flex-end;
+  align-self: center;
+}
+
+.rightNav__div li {
+  list-style-type: none;
+  margin-right: 40px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px;
+  color: #45403C;
+}
+
+a:visited {
+  color: #45403C;
+}
+
+.profile-dropdown {
+  display: block;
+  position: absolute;
+  background-color: gray;
+  opacity: 0.75;
+  margin-right: 20px;
+}
+
+.profile-dropdown li {
+  margin: 10px;
+  font-weight: bold;
+  opacity: 1;
+}

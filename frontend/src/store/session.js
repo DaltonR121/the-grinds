@@ -24,8 +24,6 @@ const removeUser = () => {
     };
 };
 
-
-
 //THUNK ACTION CREATORS
 export const restoreUser = () => async dispatch => {
     const response = await csrfFetch('/api/session');
@@ -33,7 +31,6 @@ export const restoreUser = () => async dispatch => {
     dispatch(setUser(data.user));
     return response;
 };
-
 
 // DISPATCH THIS THUNK TO LOGIN!!
 export const login = (user) => async (dispatch) => {
@@ -49,7 +46,6 @@ export const login = (user) => async (dispatch) => {
     dispatch(setUser(data.user));
     return response;
 };
-
 
 //DISPATCH THIS THUNK TO SIGN UP
 export const signup = (user) => async (dispatch) => {
@@ -75,7 +71,6 @@ export const logout = () => async (dispatch) => {
     dispatch(removeUser());
     return response;
 };
-
 
 //THIS IS THE SESSION REDUCER
 const sessionReducer = (state = initialState, action) => {

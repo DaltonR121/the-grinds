@@ -6,18 +6,12 @@
 
 .nav__div {
   display: inline-flex;
-  height: 5vh;
-  margin-top: 10px;
+  margin: 5px 0;
 }
 
 .leftNav__div, .rightNav__div {
   display: flex;
   width: 50vw;
-}
-
-.leftNav__div h1 {
-  margin-left: 40px;
-  align-self: center;
 }
 
 .rightNav__div {
@@ -27,10 +21,11 @@
 
 .rightNav__div li {
   list-style-type: none;
-  margin-right: 40px;
+  margin-right: 80px;
 }
 
-a {
+.rightNav__div a {
+  font-family: 'Satisfy', cursive;
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
@@ -38,8 +33,8 @@ a {
   color: #45403C;
 }
 
-a:visited {
-  color: #45403C;
+.rightNav__div a:hover {
+  color: #705252;
 }
 
 .profile-dropdown {

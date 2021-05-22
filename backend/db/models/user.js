@@ -1,6 +1,5 @@
-const bcrypt = require('bcryptjs');
-
 'use strict';
+const bcrypt = require('bcryptjs');
 const { Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -17,13 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 256]
-      },
-    },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
       allowNull: false,
@@ -31,26 +23,35 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60]
       },
     },
+    fullName: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [3, 256]
+      },
+    },
+    bio: DataTypes.TEXT,
+    imgUrl: DataTypes.STRING,
   },
-    {
-      defaultScope: {
-        attributes: {
-          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
-        },
+  {
+    defaultScope: {
+      attributes: {
+        exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
       },
-      scopes: {
-        currentUser: {
-          attributes: { exclude: ['hashedPassword'] },
-        },
-        loginUser: {
-          attributes: {},
-        },
+    },
+    scopes: {
+      currentUser: {
+        attributes: { exclude: ['hashedPassword'] },
       },
-    });
-  User.associate = function (models) {
+      loginUser: {
+        attributes: {},
+      },
+    },
+  });
+  User.associate = function(models) {
     // associations can be defined here
   };
-
   User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
     const { id, username, email } = this; // context will be the User instance
     return { id, username, email };

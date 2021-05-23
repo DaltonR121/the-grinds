@@ -3,7 +3,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
-import wood from '../LandingLoggedOut/images/wood.jpg'
+import wood from '../Landing/images/wood.jpg'
 
 function LoginFormPage() {
     const dispatch = useDispatch();

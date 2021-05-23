@@ -14,7 +14,8 @@ module.exports = {
       },
       companyId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Companies' }
       },
       description: {
         allowNull: false,

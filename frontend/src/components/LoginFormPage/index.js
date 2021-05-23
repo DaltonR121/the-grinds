@@ -26,6 +26,19 @@ function LoginFormPage() {
             });
     }
 
+    const demoLogin = (e) => {
+        e.preventDefault();
+        setErrors([]);
+        return dispatch(sessionActions.login({
+             credential: 'Demo-User', 
+             password: 'password' 
+            }))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            });
+    }
+
     return (
         <>
             <img className="background" src={wood} />
@@ -55,7 +68,7 @@ function LoginFormPage() {
                             />
                         </label>
                         <button className="submit__button button" type="submit">Login</button>
-                        <button className="submit__button button" type="submit">Demo Login</button>
+                        <button className="demo__button button" onClick={demoLogin}>Demo Login</button>
                 </div>
                 </form>
             </div>

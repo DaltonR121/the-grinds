@@ -32,7 +32,7 @@
     width: 230px;
 }
 
-.email__field, .password__field, .submit__button {
+.email__field, .password__field, .submit__button, .demo__button {
     margin: 0 0 20px 0;
     width: 225px;
     font-size: 30px;
@@ -41,12 +41,12 @@
     align-self: center;
 }
 
-.submit__button {
+.submit__button, .demo__button {
     color: white;
     background-color: #183346;
     opacity: 0.75;
 }
 
-.submit__button:hover {
+.submit__button:hover, .demo__button:hover {
     opacity: 1;
 }

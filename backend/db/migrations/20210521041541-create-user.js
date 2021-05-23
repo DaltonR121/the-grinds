@@ -17,7 +17,6 @@ module.exports = {
         type: Sequelize.STRING(60)
       },
       fullName: {
-        allowNull: false,
         type: Sequelize.STRING(75)
       },
       email: {
@@ -26,11 +25,9 @@ module.exports = {
         unique: true
       },
       bio: {
-        allowNull: false,
         type: Sequelize.TEXT
       },
       imgUrl: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

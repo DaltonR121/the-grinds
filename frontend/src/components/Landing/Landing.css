@@ -28,3 +28,27 @@
   max-width: 55vw;
   opacity: 1;
 }
+
+.mainPage__div {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas: 
+  "a a b"
+  "a a b"
+  "a a b";
+}
+
+.activityFeed__div {
+  grid-area: a;
+}
+
+.profile-Card {
+  grid-area: b;
+}

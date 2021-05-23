@@ -32,6 +32,13 @@ export const restoreUser = () => async dispatch => {
     return response;
 };
 
+//GET ALL DATA OF ONE USER
+export const userData = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/users/${id}`);
+    const data = await response.json();
+    return data;
+} // ???
+
 // DISPATCH THIS THUNK TO LOGIN!!
 export const login = (user) => async (dispatch) => {
     const { credential, password } = user;

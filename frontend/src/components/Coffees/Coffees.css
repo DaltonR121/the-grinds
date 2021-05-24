@@ -1,0 +1,18 @@
+.noCoffee__div {
+  text-align: center;
+  text-justify: auto;
+  background-color: rgba(255, 0, 0, 0.85);
+}
+
+
+.coffeeCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 15vw;
+  height: 40vh;
+  margin: 1em;
+  justify-content: space-evenly;
+  text-align: center;
+}

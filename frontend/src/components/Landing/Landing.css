@@ -15,6 +15,7 @@
   min-width: 105%;
   object-fit: fill;
   opacity: 0.75;
+  z-index: -100;
 }
 
 .mainImg__container {

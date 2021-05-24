@@ -27,8 +27,9 @@ router.post(
     validateLogin,
     asyncHandler(async (req, res, next) => {
         const { credential, password } = req.body;
-
+        
         const user = await User.login({ credential, password });
+        console.log(user);
 
         if (!user) {
             const err = new Error('Login failed');
@@ -41,7 +42,7 @@ router.post(
         await setTokenCookie(res, user);
 
         return res.json({
-            user,
+            user
         });
     }),
 );
@@ -59,11 +60,12 @@ router.delete(
 router.get(
     '/',
     restoreUser,
-    (req, res) => {
+    async (req, res) => {
         const { user } = req;
+
         if (user) {
             return res.json({
-                user: user.toSafeObject()
+                user
             });
         } else return res.json({});
     }

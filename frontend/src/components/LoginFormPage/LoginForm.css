@@ -1,23 +1,28 @@
+.loginContainer__div {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .login__container {
     display: flex;
+    width: fit-content;
     background-color: white;
     margin: 50px;
     justify-content: center;
     align-content: center;
+    overflow: hidden;
+    border: 3px solid black;
+    border-radius: 10px;
 }
 
 .login__form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
     background-color: white;
-    border: 2px solid black;
-    border-radius: 10px;
     width: 20vw;
     font-weight: bold;
-    z-index: 10;
-    padding: 30px 50px;
+    padding: 30px 40px;
 }
 
 .login__form h1 {

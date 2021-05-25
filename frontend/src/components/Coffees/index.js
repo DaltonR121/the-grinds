@@ -27,10 +27,10 @@ function Coffees() {
         <h1>Coffees</h1>
       <div className="coffeeContainer__div">
            {coffees?.map((coffee) => (
-            <NavLink to={`/coffees/${coffee.id}`}>
+            <NavLink key={coffee.id} to={`/coffees/${coffee.id}`}>
               <div className="coffeeCard">
                 <h2>{ coffee.Company.name }</h2>
-                <img src={ coffee.imgUrl } />
+                <img alt='' src={ coffee.imgUrl } />
                 <h2>{ coffee.flavorName }</h2>
               </div>
             </NavLink>

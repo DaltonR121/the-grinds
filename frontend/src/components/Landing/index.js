@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import mainImg from './images/mainImg.png';
 import wood from './images/wood.jpg';
 import coffeeBackground from './images/coffeeBackground.jpeg';
@@ -14,16 +12,16 @@ function Landing() {
   if (!sessionUser) {
     return (
       <div className="landing__container">
-        <img className="background" src={wood} />
+        <img alt='' className="background" src={wood} />
         <div className="mainImg__container">
-          <img className="mainImg" src={mainImg} />
+          <img alt='' className="mainImg" src={mainImg} />
         </div>
       </div>
     );
   } else {
     return (
       <div className="mainPage__div">
-        <img className="background" src={coffeeBackground} />
+        <img alt='' className="background" src={coffeeBackground} />
         <div className="main-grid">
           <div className="activityFeed__div">
             <h1>ACTIVITY FEED</h1>

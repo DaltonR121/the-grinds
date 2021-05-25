@@ -41,7 +41,7 @@ function LoginFormPage() {
 
     return (
         <>
-            <img className="background" src={wood} />
+            <img alt='' className="background" src={wood} />
             <div className="loginContainer__div">
                 <div className="login__container">
                     <form className="login__form" onSubmit={handleSubmit}>

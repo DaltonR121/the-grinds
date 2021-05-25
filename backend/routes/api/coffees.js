@@ -8,9 +8,21 @@ router.get('/', asyncHandler(async (req, res) => {
   const coffees = await Coffee.findAll({
     include: [Company]
   });
-  res.json(coffees)
-}))
+  res.json(coffees);
+}));
 
+router.post('/', asyncHandler(async (req, res) => {
+  // console.log(req.body);
+  const { flavorName, companyId, description, imgUrl } = req.body;
 
+  const newCoffee = await Coffee.create({
+    flavorName, 
+    companyId, 
+    description, 
+    imgUrl
+  });
+
+  res.json(newCoffee);
+}));
 
 module.exports = router;

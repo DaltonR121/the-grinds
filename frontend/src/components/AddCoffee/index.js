@@ -1,26 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import * as sessionActions from '../../store/session';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+import * as sessionActions from '../../store/session';
+import { createCoffee } from '../../store/coffees';
+import { getCompanies } from '../../store/companies';
 import './AddCoffee.css';
 
 function AddCoffee() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const companies = useSelector((state) => Object.values(state.company));
   const sessionUser = useSelector(state => state.session.user);
   const [flavorName, setFlavorName] = useState('');
-  const [companyId, setCompanyId] = useState(null);
+  const [companyId, setCompanyId] = useState(1);
   const [description, setDescription] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    dispatch(getCompanies())
+  }, [dispatch]);
 
   if (!sessionUser) return (
       <Redirect to="/" />
   );
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      setErrors([]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      flavorName,
+      companyId,
+      description,
+      imgUrl,
+    }
+
+    const coffee = await dispatch(createCoffee(payload));
+    if (coffee) {
+      history.push('/');
+    }
   }
+  
   return (
     <div className="addCoffee__form">
       <form className="login__form" onSubmit={handleSubmit}>
@@ -41,14 +62,20 @@ function AddCoffee() {
               <label>
                   Company:
           <select className="company__field input"
-                      type="password"
                       value={companyId}
                       onChange={(e) => setCompanyId(e.target.value)}
                       required
-                  />
-          <option>
-            {/* *************************** */}
-          </option>
+                  >
+                    {companies.map(company => (
+                      <option 
+                      value={company.id}
+                      onChange={(e) => setCompanyId(e.target.val)}
+                      >
+                        {company.name}
+                      </option>
+                    ))}
+          </select>
+          <h6>If you don't see the coffee company listed, please click here and add that first!</h6>
               </label>
               <label>
                   Description:
@@ -68,7 +95,7 @@ function AddCoffee() {
                       required
                   />
               </label>
-              <button className="submit__button button" type="submit">Submit</button>
+              <button className="submit__button button" type="submit" disabled={errors.length > 0}>Submit</button>
       </div>
       </form>
     </div>

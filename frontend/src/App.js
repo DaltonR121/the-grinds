@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import Coffees from "./components/Coffees";
 import AddCoffee from "./components/AddCoffee";
 import SignupFormPage from "./components/SignupFormPage";
+import SingleCoffee from "./components/SingleCoffee";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Landing from "./components/Landing";
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/coffees/add" exact>
             <AddCoffee />
+          </Route>
+          <Route path="/coffees/:id" exact>
+            <SingleCoffee />
           </Route>
         </Switch>
       )}

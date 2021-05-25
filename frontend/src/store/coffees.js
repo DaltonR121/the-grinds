@@ -2,16 +2,22 @@ import { csrfFetch } from "./csrf";
 
 const SET_COFFEES = 'coffees/SET_COFFEES';
 const ADD_COFFEES = 'coffees/ADD_COFFEE';
+const GET_ONE = 'coffees/GET_ONE';
 
 const setCoffees = coffees => ({
   type: SET_COFFEES,
   coffees
 })
 
-const addOneCoffee = coffees => ({
+const addOneCoffee = coffee => ({
   type: ADD_COFFEES,
-  coffees
+  coffee
 });
+
+const getOneCoffee = coffee => ({
+  type: GET_ONE,
+  coffee
+})
 
 export const getCoffees = () => async (dispatch) => {
   const res = await fetch('/api/coffees');
@@ -37,6 +43,16 @@ export const createCoffee = data => async dispatch => {
   }
 }
 
+export const singleCoffee = id => async dispatch => {
+  const response = await csrfFetch(`/api/coffees/${id}`);
+
+  if (response.ok) {
+    const coffee = await response.json();
+    dispatch(getOneCoffee(coffee));
+    return coffee;
+  }
+}
+
 const initialState = {};
 
 const coffeesReducer = (state = initialState, action) => {
@@ -51,11 +67,16 @@ const coffeesReducer = (state = initialState, action) => {
     case ADD_COFFEES: {
       const newState = { ...state };
       console.log(newState);
-      action.coffees.forEach((coffee) => {
-        newState[coffee.id] = coffee;
-      });
+        newState[action.coffee.id] = action.coffee;
       return newState;
     }
+    // ****************************
+    case GET_ONE: {
+      const newState = {};
+      newState[action.coffee.id] = action.coffee;
+      return newState;
+    }
+    // ****************************
     default:
       return state;
   }

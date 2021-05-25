@@ -11,8 +11,14 @@ router.get('/', asyncHandler(async (req, res) => {
   res.json(coffees);
 }));
 
+router.get('/:id', asyncHandler(async (req, res) => {
+  const coffee = await Coffee.findByPk(req.params.id, {
+    include: [Company]
+  });
+  return res.json(coffee);
+}));
+
 router.post('/', asyncHandler(async (req, res) => {
-  // console.log(req.body);
   const { flavorName, companyId, description, imgUrl } = req.body;
 
   const newCoffee = await Coffee.create({

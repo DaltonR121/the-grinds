@@ -24,6 +24,7 @@ export const getCoffees = () => async (dispatch) => {
   const coffees = await res.json();
   
   dispatch(setCoffees(coffees));
+  return coffees;
 }
 
 export const createCoffee = data => async dispatch => {
@@ -67,7 +68,8 @@ const coffeesReducer = (state = initialState, action) => {
     case ADD_COFFEES: {
       const newState = { ...state };
       console.log(newState);
-        newState[action.coffee.id] = action.coffee;
+        newState.newCoffee = action.coffee;
+        // newState[action.coffee.id] = action.coffee;
       return newState;
     }
     // ****************************

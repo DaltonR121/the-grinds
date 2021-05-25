@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Coffees.css';
@@ -7,12 +7,14 @@ import { getCoffees } from '../../store/coffees';
 
 function Coffees() {
   const dispatch = useDispatch();
-  
+  const newCoffee = useSelector((state) => state.coffee.newCoffee)
+  const [coffees, setCoffees] = useState([]);
+
   useEffect(() => {
-    dispatch(getCoffees())
-  }, [dispatch]);
+    dispatch(getCoffees()).then(data => setCoffees(data))
+  }, [dispatch, newCoffee]);
   
-  const coffees = useSelector((state) => state.coffee);
+  // const coffees = useSelector((state) => Object.values(state.coffee));
   console.log(coffees)
 
   return (
@@ -24,7 +26,7 @@ function Coffees() {
         </NavLink>
         <h1>Coffees</h1>
       <div className="coffeeContainer__div">
-           {/* {coffees?.map((coffee) => (
+           {coffees?.map((coffee) => (
             <NavLink to={`/coffees/${coffee.id}`}>
               <div className="coffeeCard">
                 <h2>{ coffee.Company.name }</h2>
@@ -32,7 +34,7 @@ function Coffees() {
                 <h2>{ coffee.flavorName }</h2>
               </div>
             </NavLink>
-          ))}  */}
+          ))} 
       </div>
     </>
   );

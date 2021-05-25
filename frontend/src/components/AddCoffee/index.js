@@ -17,7 +17,7 @@ function AddCoffee() {
   const [description, setDescription] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const [errors, setErrors] = useState([]);
-
+  
   useEffect(() => {
     dispatch(getCompanies())
   }, [dispatch]);
@@ -69,7 +69,6 @@ function AddCoffee() {
                     {companies.map(company => (
                       <option 
                       value={company.id}
-                      onChange={(e) => setCompanyId(e.target.val)}
                       >
                         {company.name}
                       </option>

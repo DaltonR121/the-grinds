@@ -25,7 +25,7 @@ function Coffees() {
           {coffees.map((coffee) => (
             <div className="coffeeCard">
               <h2>{ coffee.Company.name }</h2>
-              {/* <img src={coffee.imgUrl} /> */}
+              <img src={coffee.imgUrl} />
               <h2>{ coffee.flavorName }</h2>
             </div>
           ))}

@@ -74,6 +74,7 @@ function AddCoffee() {
                         {company.name}
                       </option>
                     ))}
+                    <option>Other</option>
           </select>
           <h6>If you don't see the coffee company listed, please click here and add that first!</h6>
               </label>

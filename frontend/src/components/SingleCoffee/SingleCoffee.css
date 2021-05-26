@@ -1,0 +1,10 @@
+.singleCoffeeContainer__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.singleCoffeeContainer__div img {
+  width: 20vw;
+}

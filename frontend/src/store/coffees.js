@@ -38,7 +38,6 @@ export const createCoffee = data => async dispatch => {
 
   if (response.ok) {
     const coffee = await response.json();
-    console.log(coffee);
     dispatch(addOneCoffee(coffee));
     return coffee;
   }
@@ -49,6 +48,7 @@ export const singleCoffee = id => async dispatch => {
 
   if (response.ok) {
     const coffee = await response.json();
+    console.log(coffee);
     dispatch(getOneCoffee(coffee));
     return coffee;
   }
@@ -67,18 +67,15 @@ const coffeesReducer = (state = initialState, action) => {
     }
     case ADD_COFFEES: {
       const newState = { ...state };
-      console.log(newState);
         newState.newCoffee = action.coffee;
         // newState[action.coffee.id] = action.coffee;
       return newState;
     }
-    // ****************************
     case GET_ONE: {
-      const newState = {};
-      newState[action.coffee.id] = action.coffee;
+      const newState = { ...state };
+      newState.currentCoffee = action.coffee;
       return newState;
     }
-    // ****************************
     default:
       return state;
   }

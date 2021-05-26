@@ -7,15 +7,12 @@ import { getCoffees } from '../../store/coffees';
 
 function Coffees() {
   const dispatch = useDispatch();
-  const newCoffee = useSelector((state) => state.coffee.newCoffee)
   const [coffees, setCoffees] = useState([]);
 
   useEffect(() => {
     dispatch(getCoffees()).then(data => setCoffees(data))
-  }, [dispatch, newCoffee]);
-  
-  // const coffees = useSelector((state) => Object.values(state.coffee));
-  console.log(coffees)
+  }, [dispatch]);
+
 
   return (
     <>
@@ -27,7 +24,7 @@ function Coffees() {
         <h1>Coffees</h1>
       <div className="coffeeContainer__div">
            {coffees?.map((coffee) => (
-            <NavLink key={coffee.id} to={`/coffees/${coffee.id}`}>
+            <NavLink className="card__link" key={coffee.id} to={`/coffees/${coffee.id}`}>
               <div className="coffeeCard">
                 <h2>{ coffee.Company.name }</h2>
                 <img alt='' src={ coffee.imgUrl } />

@@ -21,10 +21,12 @@
 #modal-content {
   display: flex;
   flex-direction: column;
+  border: 3px solid black;
+  border-radius: 5px;
   height: 50vh;
-  width: 70vw;
+  width: 30vw;
   position: absolute;
-  background-color:rgba(190, 190, 190, 0.75);
+  background-color:rgba(190, 190, 190, 1);
 }
 
 #modal-content input {

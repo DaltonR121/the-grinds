@@ -8,6 +8,10 @@
   display: flex;
 }
 
+.card__link {
+  width: fit-content;
+}
+
 .coffeeCard {
   display: flex;
   flex-direction: column;

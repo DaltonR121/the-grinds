@@ -39,9 +39,6 @@ router.post(
     asyncHandler(async (req, res) => {
         const { email, password, username } = req.body;
         const user = await User.signup({ email, username, password });
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const createUser = await User.create({ username, email, hashedPassword });
         await setTokenCookie(res, user);
 
         return res.json({

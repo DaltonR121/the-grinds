@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 
-const { Coffee, Company, Review } = require ('../../db/models');
+const { Coffee, Company, Review, User } = require ('../../db/models');
 
 router.get('/', asyncHandler(async (req, res) => {
   const coffees = await Coffee.findAll({
@@ -23,10 +23,19 @@ router.get('/:id/getReviews/', asyncHandler(async (req, res) => {
   const reviews = await Review.findAll({
     where: {
       coffeeId: req.params.id
-    }
+    },
+    include: [Coffee, User]
   })
+
   return res.json(reviews);
 }))
+
+// Delete route to delete a single comment
+router.delete(`/:id/delete/`, asyncHandler(async (req, res) => {
+  const review = await Review.findByPk(req.params.id);
+
+  review.destroy();
+}));
 
 router.post('/', asyncHandler(async (req, res) => {
   const { flavorName, companyId, description, imgUrl } = req.body;
@@ -51,7 +60,12 @@ router.post('/createReview', asyncHandler(async (req, res) => {
     userId
   });
 
-  res.json(newReview);
+  //ORDER QUERY
+  const newestReview = await Review.findByPk(newReview.id, {
+    include: [Coffee, User]
+  })
+
+  res.json(newestReview);
 }));
 
 module.exports = router;

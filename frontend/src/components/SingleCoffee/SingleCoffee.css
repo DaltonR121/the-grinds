@@ -8,3 +8,42 @@
 .singleCoffeeContainer__div img {
   width: 20vw;
 }
+
+.userReviewContainer__div {
+  display: flex;
+  margin: 20px;
+}
+
+.userReview__div {
+  display: flex;
+  width: 100vw;
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+.reviewImg__div {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.reviewImg__div img {
+  border-radius: 180px;
+  height: 50%;
+  margin: 20px;
+}
+
+.reviewText {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.reviewText h2 {
+  font-weight: normal;
+}
+
+.review__review {
+  display: flex;
+  align-content: center;
+}

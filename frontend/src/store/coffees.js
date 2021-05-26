@@ -48,7 +48,6 @@ export const singleCoffee = id => async dispatch => {
 
   if (response.ok) {
     const coffee = await response.json();
-    console.log(coffee);
     dispatch(getOneCoffee(coffee));
     return coffee;
   }

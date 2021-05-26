@@ -8,7 +8,7 @@ import ProfileCard from '../ProfileCard';
 
 function Landing() {
   const sessionUser = useSelector(state => state.session.user);
-  // console.log(sessionUser);
+  
   if (!sessionUser) {
     return (
       <div className="landing__container">

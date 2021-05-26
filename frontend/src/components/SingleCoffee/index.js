@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import './SingleCoffee.css';
 
 import { singleCoffee } from '../../store/coffees';
-import { createReviews, getAllReviews } from '../../store/reviews';
+import { createReviews, getAllReviews, deleteSingleReview } from '../../store/reviews';
 
 function SingleCoffee() {
   const dispatch = useDispatch();
   const { id }= useParams();
   
   const sessionUser = useSelector((state) => state.session.user);
-  const addReview = useSelector((state) => state.review.id)
+  const reviews = useSelector((state) => Object.values(state.review));
 
   
   const [currentCoffee, setCurrentCoffee] = useState([]);
@@ -29,22 +29,21 @@ function SingleCoffee() {
   const coffeeId = currentCoffee.id;
   const userId = sessionUser.id;
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-      const payload = {
-        rating, 
-        review, 
-        coffeeId, 
-        userId
-      }
+    const payload = {
+      rating, 
+      review, 
+      coffeeId, 
+      userId
+    }
 
-      dispatch(createReviews(payload))
-
-    };
+    dispatch(createReviews(payload))
+  };
   
   return (
-    <>
+    <div className="singleCoffeePage">
       <h1>{currentCoffee.flavorName}</h1>
         <div className="singleCoffeeContainer__div">
           {currentCoffee.Company !== undefined ? <h2>{ currentCoffee.Company.name }</h2> : null }
@@ -83,10 +82,33 @@ function SingleCoffee() {
             <button type="submit">Submit Review</button>
         </form>
         </div>
-        <div className="reviewDisplay__div">
-
+        <div className="reviewDisplayContainer__div">
+          {reviews.map(review => (
+            <div className="userReviewContainer__div">
+              <div className="userReview__div">
+                <div className="reviewImg__div">
+                  <img alt='user avatar' src={review.User.imgUrl} />
+                </div>
+                <div className="reviewText">
+                  <h3>{review.User.username}</h3>
+                  <h3>{review.rating}/5</h3>
+                </div>
+                <div className="review__review">
+                  <h2>{review.review}</h2>
+                </div>
+                {review.User.id === sessionUser.id ? (
+                  <div className="changeButtons">
+                    <button className="editButton">Edit</button>
+                    <button className="deleteButton"
+                            onClick={() => dispatch(deleteSingleReview(review.id))
+                            }>Delete</button>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          ))}
         </div>
-  </>
+  </div>
   );
 }
 

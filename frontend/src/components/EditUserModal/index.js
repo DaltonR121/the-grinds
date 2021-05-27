@@ -29,7 +29,7 @@ function EditUserModal() {
     }
     
     dispatch(sessionActions.editCurrentUser(payload));
-    history.push('/');
+    history.go(0);
   };
 
   return (

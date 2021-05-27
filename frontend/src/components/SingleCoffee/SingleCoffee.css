@@ -1,12 +1,35 @@
-.singleCoffeeContainer__div {
+.singleCoffeePage {
   display: flex;
   flex-direction: column;
+  align-content: center;
+  min-height: 95vh;
+}
+
+.singleCoffeeContainer__div, .reviews__div {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 80vw;
+  margin: 10px 0;
+  padding: 30px 10px;
   justify-content: center;
   align-content: center;
+  text-align: center;
+  justify-self: center;
+  align-self: center;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.singleCoffeeContainer__div h1, h2 {
+  background-color: white;
 }
 
 .singleCoffeeContainer__div img {
+  display: flex;
+  align-self: center;
   width: 20vw;
+  padding: 20px;
 }
 
 .userReviewContainer__div {
@@ -17,8 +40,10 @@
 .userReview__div {
   display: flex;
   width: 100vw;
+  height: 100px;
   border: 3px solid black;
   border-radius: 5px;
+  background-color: white;
 }
 
 .reviewImg__div {
@@ -46,4 +71,22 @@
 .review__review {
   display: flex;
   align-content: center;
+}
+
+.reviewDisplayContainer__div {
+  width: 80vw;
+}
+
+.reviews__div {
+  height: fit-content;
+  margin-bottom: 50px;
+}
+
+.reviews__div select, textarea {
+  align-self: center;
+  width: 50%;
+}
+
+.reviews__div textarea {
+  height: 100px;
 }

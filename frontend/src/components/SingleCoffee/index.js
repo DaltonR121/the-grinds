@@ -44,8 +44,8 @@ function SingleCoffee() {
   
   return (
       <div className="singleCoffeePage">
-        <h1>{currentCoffee.flavorName}</h1>
-          <div className="singleCoffeeContainer__div">
+        <div className="singleCoffeeContainer__div">
+          <h1>{currentCoffee.flavorName}</h1>
             <img alt='' src={currentCoffee.imgUrl} />
             <h2>{ currentCoffee.description }</h2>
           </div>
@@ -80,7 +80,6 @@ function SingleCoffee() {
               </label>
               <button type="submit">Submit Review</button>
           </form>
-          </div>
 
           {/* Review List */}
           <div className="reviewDisplayContainer__div">
@@ -110,6 +109,7 @@ function SingleCoffee() {
               </div>
             </>
           ))}
+          </div>
         </div>
   </div>
   );

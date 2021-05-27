@@ -14,3 +14,22 @@
 .addCoffee__form label {
   margin: 7px;
 }
+
+.loggedOutContainer__div {
+  display: flex;
+  height: 95vh;
+  justify-content: center;
+}
+
+.textContainer__div {
+  display: flex;
+  background-color: white;
+  width: 80vw;
+  height: fit-content;
+  border: 2px solid black;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+  justify-content: center;
+}

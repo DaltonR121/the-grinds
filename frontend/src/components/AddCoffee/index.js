@@ -102,7 +102,11 @@ function AddCoffee() {
       );
     } else {
       return (
-        <h1>You must log in to add a new coffee!</h1>
+        <div className="loggedOutContainer__div">
+          <div className="textContainer__div">
+            <h1>Please log in to add a new coffee!</h1>
+          </div>
+        </div>
       )
     }
 }

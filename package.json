@@ -1,0 +1,19 @@
+{
+  "name": "the-grinds",
+  "version": "1.0.0",
+  "description": "An application built with a specific focus on coffee for users to add their favorite flavors and leave reviews",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaltonR121/the-grinds.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaltonR121/the-grinds/issues"
+  },
+  "homepage": "https://github.com/DaltonR121/the-grinds#readme"
+}

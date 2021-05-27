@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 
 //ACTIONS
 const SET_USER = 'session/setUser';
+const EDIT_USER = 'session/editUser';
 const REMOVE_USER = 'session/removeUser';
 
 
@@ -17,6 +18,14 @@ const setUser = (user) => {
         payload: user,
     };
 };
+
+const editUser = (user) => {
+    console.log(user);
+    return {
+        type: EDIT_USER,
+        payload: user,
+    }
+}
 
 const removeUser = () => {
     return {
@@ -63,6 +72,18 @@ export const signup = (user) => async (dispatch) => {
     return response;
 };
 
+export const editCurrentUser = (user) => async (dispatch) => {
+    const response = await csrfFetch('/api/users', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    });
+    const data = await response.json();
+    dispatch(editUser(data));
+}
+
 //DISPATCH THIS THUNK TO LOGOUT
 export const logout = () => async (dispatch) => {
     const response = await csrfFetch('/api/session', {
@@ -78,6 +99,10 @@ const sessionReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:
             newState = Object.assign({}, state);
+            newState.user = action.payload;
+            return newState;
+        case EDIT_USER:
+            newState = { ...state };
             newState.user = action.payload;
             return newState;
         case REMOVE_USER:

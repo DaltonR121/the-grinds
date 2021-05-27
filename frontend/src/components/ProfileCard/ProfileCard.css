@@ -1,7 +1,7 @@
 .profile__card {
   display: flex;
   flex-direction: column;
-  background-color: #36546C;
+  background-color: rgb(255, 255, 255);
   margin: 50px;
   border: 2px solid black;
   border-radius: 5px;

@@ -10,6 +10,7 @@ import { ModalProvider } from "./context/Modal";
 import * as sessionActions from './store/session';
 import * as coffeeActions from './store/coffees';
 import * as companyActions from './store/companies';
+import * as activityActions from './store/activity';
 
 const store = configureStore();
 
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
   window.coffeeActions = coffeeActions;
   window.companyActions = companyActions;
+  window.activityActions = activityActions;
 }
 
 function Root() {

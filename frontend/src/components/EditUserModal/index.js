@@ -1,22 +1,35 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function EditUserModal() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user);
+  
+  const [username, setUsername] = useState(sessionUser.username);
+  const [fullName, setFullName] = useState(sessionUser.fullName);
+  const [email, setEmail] = useState(sessionUser.email);
+  const [bio, setBio] = useState(sessionUser.bio);
+  const [imgUrl, setImgUrl] = useState(sessionUser.imgUrl);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
+
+    const payload = {
+      id: sessionUser.id,
+      username,
+      fullName,
+      email,
+      bio,
+      imgUrl
+    }
+    
+    dispatch(sessionActions.editCurrentUser(payload));
+    history.push('/');
   };
 
   return (
@@ -30,17 +43,43 @@ function EditUserModal() {
         Username:
         <input
           type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
       </label>
       <label>
-        Password
+        Full Name:
         <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          type="text"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Email:
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Bio:
+        <textarea
+        value={bio}
+        onChange={(e) => setBio(e.target.value)}
+        required
+        ></textarea>
+      </label>
+      <label>
+        Avatar URL:
+        <input
+          type="text"
+          value={imgUrl}
+          onChange={(e) => setImgUrl(e.target.value)}
           required
         />
       </label>

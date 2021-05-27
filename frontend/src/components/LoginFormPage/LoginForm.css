@@ -2,12 +2,14 @@
     display: flex;
     justify-content: center;
     align-content: center;
+    height: 95vh;
 }
 
 .login__container {
     display: flex;
     width: fit-content;
     background-color: white;
+    height: fit-content;
     margin: 50px;
     justify-content: center;
     align-content: center;
@@ -30,7 +32,7 @@
     margin: 0 0 30px 0;
 }
 
-.signup__inputs {
+.login__inputs {
     display: flex;
     flex-direction: column;
     align-self: center;

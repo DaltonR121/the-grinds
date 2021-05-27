@@ -1,10 +1,9 @@
 .landing__container {
   display: flex;
   justify-content: center;
-  margin: 0;
-  padding: 0;
+  padding-bottom: 40px;
   width: 100%;
-  height: 100%;
+  height: 90vh;
   min-width: 100%;
 }
 
@@ -39,11 +38,12 @@
 .main-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   grid-template-areas: 
   "a a b"
   "a a b"
   "a a b";
+  height: 95vh;
 }
 
 .activityFeed__div {
@@ -52,4 +52,29 @@
 
 .profile-Card {
   grid-area: b;
+}
+
+.activityFeed__div h1 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 30px;
+}
+
+.activityCard__div {
+  display: inline-flex;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50px;
+  height: 35px;
+  width: 1100px;
+  padding: 20px;
+  align-items: center;
+  overflow-y: hidden;
+}
+
+.activityCard__div img {
+  border-radius: 180%;
+  margin-right: 20px;
+  height: 50px;
 }

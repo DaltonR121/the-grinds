@@ -47,4 +47,15 @@ router.post(
     }),
 );
 
+router.put('/', asyncHandler(async (req, res) => {
+    const { id, username, fullName, email, bio, imgUrl } = req.body;
+    const user = await User.findByPk(id);
+
+    await user.update({
+        username, fullName, email, bio, imgUrl
+    })
+
+    return res.json(user);
+}))
+
 module.exports = router;

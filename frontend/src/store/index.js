@@ -3,6 +3,7 @@ import sessionReducer from './session';
 import coffeesReducer from './coffees';
 import companiesReducer from './companies';
 import reviewsReducer from './reviews';
+import activitiesReducer from './activity';
 
 import thunk from "redux-thunk";
 
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   session: sessionReducer,
   coffee: coffeesReducer,
   company: companiesReducer,
-  review: reviewsReducer
+  review: reviewsReducer,
+  activity: activitiesReducer
 });
 
 

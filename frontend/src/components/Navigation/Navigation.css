@@ -6,7 +6,8 @@
 
 .nav__div {
   display: inline-flex;
-  margin: 5px 0;
+  background-color: white;
+  height: 50px;
 }
 
 .leftNav__div, .rightNav__div {

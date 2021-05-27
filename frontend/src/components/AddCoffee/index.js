@@ -40,69 +40,71 @@ function AddCoffee() {
   if (sessionUser) {
 
     return (
-      <div className="addCoffee__form">
-        <form className="login__form" onSubmit={handleSubmit}>
-            <h1>Add A Coffee Flavor!</h1>
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-        <div className="signup__inputs">
-                <label>
-                    Flavor Name:
-            <input className="flavorName__field input"
-                        type="text"
-                        value={flavorName}
-                        onChange={(e) => setFlavorName(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Company:
-            <select className="company__field input"
-                        value={companyId}
-                        onChange={(e) => setCompanyId(e.target.value)}
-                        required
-                    >
-                      {companies.map(company => (
-                        <option 
-                        key={company.id}
-                        value={company.id}
-                        >
-                          {company.name}
-                        </option>
-                      ))}
-                      <option>Other</option>
-            </select>
-            <h6>If you don't see the coffee company listed, please click here and add that first!</h6>
-                </label>
-                <label>
-                    Description:
-            <input className="description__field input"
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Image URL:
-            <input className="imgUrl__field input"
-                        type="text"
-                        value={imgUrl}
-                        onChange={(e) => setImgUrl(e.target.value)}
-                        required
-                    />
-                </label>
-                <button className="submit__button button" type="submit" disabled={errors.length > 0}>Submit</button>
+      <div className="addCoffeeContainer__div">
+        <div className="addCoffee__form">
+          <form className="addCoffee__form" onSubmit={handleSubmit}>
+              <h1>Add A Coffee Flavor!</h1>
+              <ul>
+                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+              </ul>
+          <div className="signup__inputs">
+                  <label>
+                      Flavor Name:
+              <input className="flavorName__field input"
+                          type="text"
+                          value={flavorName}
+                          onChange={(e) => setFlavorName(e.target.value)}
+                          required
+                      />
+                  </label>
+                  <label>
+                      Company:
+              <select className="company__field input"
+                          value={companyId}
+                          onChange={(e) => setCompanyId(e.target.value)}
+                          required
+                      >
+                        {companies.map(company => (
+                          <option 
+                          key={company.id}
+                          value={company.id}
+                          >
+                            {company.name}
+                          </option>
+                        ))}
+                        <option>Other</option>
+              </select>
+              <h6>If you don't see the company listed, please select other!</h6>
+                  </label>
+                  <label>
+                      Description:
+              <input className="description__field input"
+                          type="text"
+                          value={description}
+                          onChange={(e) => setDescription(e.target.value)}
+                          required
+                      />
+                  </label>
+                  <label>
+                      Image URL:
+              <input className="imgUrl__field input"
+                          type="text"
+                          value={imgUrl}
+                          onChange={(e) => setImgUrl(e.target.value)}
+                          required
+                      />
+                  </label>
+                  <button className="submit__button button" type="submit" disabled={errors.length > 0}>Submit</button>
+          </div>
+          </form>
         </div>
-        </form>
       </div>
-    );
-  } else {
-    return (
-      <h1>You must log in to add a new coffee!</h1>
-    )
-  }
+      );
+    } else {
+      return (
+        <h1>You must log in to add a new coffee!</h1>
+      )
+    }
 }
 
 export default AddCoffee;

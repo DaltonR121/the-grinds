@@ -33,8 +33,8 @@ router.get('/:id/getReviews/', asyncHandler(async (req, res) => {
 // Delete route to delete a single comment
 router.delete(`/:id/delete/`, asyncHandler(async (req, res) => {
   const review = await Review.findByPk(req.params.id);
-
   review.destroy();
+  res.status(204).end();
 }));
 
 router.post('/', asyncHandler(async (req, res) => {

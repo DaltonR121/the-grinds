@@ -4,3 +4,9 @@
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+#root {
+  background-image: url('../src/images/coffeeBg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

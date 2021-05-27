@@ -3,7 +3,6 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
-import wood from '../Landing/images/wood.jpg'
 
 function LoginFormPage() {
     const dispatch = useDispatch();
@@ -41,7 +40,6 @@ function LoginFormPage() {
 
     return (
         <>
-            <img alt='' className="background" src={wood} />
             <div className="loginContainer__div">
                 <div className="login__container">
                     <form className="login__form" onSubmit={handleSubmit}>
@@ -49,7 +47,7 @@ function LoginFormPage() {
                         <ul>
                             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                         </ul>
-                    <div className="signup__inputs">
+                    <div className="login__inputs">
                             <label>
                                 Username or Email:
                         <input className="email__field input"

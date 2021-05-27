@@ -22,14 +22,36 @@
   display: flex;
   flex-direction: column;
   border: 3px solid black;
+  align-content: center;
   border-radius: 5px;
-  height: 50vh;
+  height: fit-content;
   width: 30vw;
   position: absolute;
   background-color:rgba(190, 190, 190, 1);
 }
 
-#modal-content input {
+#modal-content input, textarea, label {
+  display: flex;
+  font-weight: bold;
+  flex-direction: column;
+}
+
+#modal-content textarea {
+  width: 350px;
+  height: 100px;
+}
+
+#modal-content form {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
+  align-content: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+}
+
+#modal-content button {
+  margin: 20px 20px 40px 20px;
+  font-weight: bold;
 }

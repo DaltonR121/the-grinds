@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal } from "../../context/Modal"
+import { useHistory } from "react-router-dom";
 
-function EditUserModal({ setShowModal }) {
+function EditCommentModal() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
   
+  // CHANGE STATES FOR COMMENTS - CHECK STATE TO FIND FIELDS,
+  // SET USE SELECTOR FOR REVIEWS - CHANGE FORM ENTIRELY
+  // BUILD EDIT ROUTE
   const [username, setUsername] = useState(sessionUser.username);
   const [fullName, setFullName] = useState(sessionUser.fullName);
   const [email, setEmail] = useState(sessionUser.email);
@@ -28,7 +32,7 @@ function EditUserModal({ setShowModal }) {
     }
     
     dispatch(sessionActions.editCurrentUser(payload));
-    setShowModal(false);
+    history.go(0);
   };
 
   return (
@@ -87,4 +91,4 @@ function EditUserModal({ setShowModal }) {
   );
 }
 
-export default EditUserModal;
+export default EditCommentModal;

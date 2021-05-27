@@ -32,7 +32,7 @@ function Landing() {
             {activities.map(activity => (
               <div className="activityCard__div">
                 <img alt="" src={activity.User.imgUrl} />
-                <h2>{activity.User.username} is enjoying {activity.Coffee.flavorName} right now! </h2>
+                <h2><span className="activityColor">{activity.User.username}</span> is enjoying <span className="activityColor">{activity.Coffee.flavorName}</span> right now! </h2>
               </div>
             ))}
           </div>

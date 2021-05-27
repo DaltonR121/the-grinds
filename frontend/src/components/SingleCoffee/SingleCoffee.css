@@ -90,3 +90,10 @@
 .reviews__div textarea {
   height: 100px;
 }
+
+.reviews__div select {
+  display: flex;
+  width: 100px;
+  text-align-last: center;
+  text-align: center;
+}

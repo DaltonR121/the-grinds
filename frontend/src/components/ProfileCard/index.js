@@ -19,7 +19,7 @@ function ProfileCard({ user }){
         <button className="profileEdit__button" onClick={() => setShowModal(true)}>Edit Profile</button>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
-            <EditUserModal />
+            <EditUserModal setShowModal={setShowModal} />
           </Modal>
         )}
       </>

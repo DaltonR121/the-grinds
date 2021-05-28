@@ -50,12 +50,19 @@ export const getAllReviews = (id) => async (dispatch) => {
 }
 
 // BUILD EDIT HERE 
-export const editOneReview = (id) => async (dispatch) => {
-  const res = await csrfFetch(`/api/coffees/${id}/edit/`);
-  console.log(res);
+export const editOneReview = (data) => async (dispatch) => {
+  const res = await csrfFetch(`/api/coffees/review/edit/`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+  
   const reviews = await res.json();
+  console.log(reviews);
 
-  dispatch(getReviews(reviews));
+  dispatch(editReview(reviews));
 }
 
 export const deleteSingleReview = id => async (dispatch) => {
@@ -64,7 +71,8 @@ export const deleteSingleReview = id => async (dispatch) => {
   });
 
   if (res.ok) {
-    dispatch(deleteReview(id));
+    const data = dispatch(deleteReview(id));
+    return data;
   }
 }
 
@@ -83,6 +91,11 @@ const reviewReducer = (state = initialState, action) => {
         state[review.id] = review
       })
       return state;
+    }
+    case EDIT_REVIEW: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload
+      return newState;
     }
     case DELETE_REVIEW: {
       const newState = { ...state };

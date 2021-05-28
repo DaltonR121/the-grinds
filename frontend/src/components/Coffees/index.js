@@ -18,7 +18,7 @@ function Coffees() {
     <>
       <NavLink to="/coffees/add">
           <div className="noCoffee__div">
-            <h2>Don't see your favorite coffee?  Click here!</h2>
+            <h3>Don't see your favorite coffee?  Click here!</h3>
           </div>
         </NavLink>
         <h1>Coffees</h1>

@@ -23,8 +23,12 @@
   flex-direction: column;
   background-color: white;
   width: 20vw;
+  height: fit-content;
   font-weight: bold;
   padding: 30px 40px;
+  border: 3px solid black;
+  border-radius: 10px;
+  margin-top: 50px;
 }
 
 .signup__form h1 {
@@ -39,21 +43,22 @@
   width: 230px;
 }
 
-.email__field, .password__field, .submit__button, .demo__button {
-  margin: 0 0 20px 0;
+.signup__inputs label {
+  margin: 10px 0;
+}
+
+ .signup__button {
+  margin: 10px 0 20px 0;
   width: 225px;
   font-size: 30px;
   text-align: center;
   justify-self: center;
   align-self: center;
-}
-
-.submit__button, .demo__button {
   color: white;
   background-color: #183346;
   opacity: 0.75;
 }
 
-.submit__button:hover, .demo__button:hover {
+.signup__button:hover {
   opacity: 1;
 }

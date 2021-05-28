@@ -1,13 +1,12 @@
 .noCoffee__div {
+  display: flex;
   background-color: rgba(255, 0, 0, 0.85);
   height: 40px;
+  justify-content: center;
 }
 
-.noCoffee__div h2 {
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-  display: flex;
+.noCoffee__div h3 {
+  align-self: center;
 }
 
 a {
@@ -18,17 +17,18 @@ a:visited {
   color: black;
 }
 
-.noCoffee__div h2 {
-  display: flex;
-}
-
 .coffeeContainer__div {
   display: flex;
   height: 100vh;
 }
 
+.coffeeContainer__div h3 {
+  text-align: center;
+}
+
 .card__link {
   width: fit-content;
+  height: fit-content;
 }
 
 .coffeeCard {

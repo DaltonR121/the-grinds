@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './SingleCoffee.css';
 import { Modal } from '../../context/Modal';
@@ -7,10 +7,12 @@ import EditCommentModal from '../EditCommentModal/index';
 
 import { singleCoffee } from '../../store/coffees';
 import { createReviews, getAllReviews, editOneReview, deleteSingleReview } from '../../store/reviews';
+import { set } from 'js-cookie';
 
 function SingleCoffee() {
   const dispatch = useDispatch();
   const { id }= useParams();
+  const history = useHistory();
   
   const sessionUser = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => Object.values(state.review));
@@ -19,8 +21,10 @@ function SingleCoffee() {
   
   const [rating, setRating] = useState(1);
   const [review, setReview] = useState('');
+  const [reviewId, setReviewId] = useState(null);
   const [errors, setErrors] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [del, setDel] = useState(false); 
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,19 +36,25 @@ function SingleCoffee() {
       userId
     }
 
-    dispatch(createReviews(payload))
+    dispatch(createReviews(payload));
+    setReview('')
   };
 
   useEffect(() => {
     dispatch(singleCoffee(id)).then(data => setCurrentCoffee(data));
     dispatch(getAllReviews(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, review.id, del]);
 
   let userId;
 
   const coffeeId = currentCoffee.id;
   if (sessionUser) {
     userId = sessionUser.id;
+  }
+
+  const deleteReview = (id) => {
+    dispatch(deleteSingleReview(id))
+    history.go(0);
   }
 
   return (
@@ -97,25 +107,28 @@ function SingleCoffee() {
                 <div className="reviewImg__div">
                   <img alt='user avatar' src={review.User.imgUrl} />
                 </div>
-                <div className="reviewText">
-                  <h3>{review.User.username}</h3>
-                  <h3>{review.rating}/5</h3>
-                </div>
+                  <div className="reviewUser">
+                    <h3>{review.User.username}</h3>
+                  </div>
                 <div className="review__review">
+                  <h3 className="colorRating">{review.rating}/5 Stars</h3>
                   <h2>{review.review}</h2>
                 </div>
                   {sessionUser ? 
                     ( review.User.id === sessionUser.id ? 
                       <div className="changeButtons">
                         <button className="editButton"
-                                onClick={() => setShowModal(true)}>Edit</button>
+                                onClick={() => (
+                                  setShowModal(true),
+                                  setReviewId(review.id)
+                                )}>Edit</button>
                                 {showModal && (
                                   <Modal onClose={() => setShowModal(false)}>
-                                    <EditCommentModal />
+                                    <EditCommentModal setShowModal={setShowModal} reviewId={reviewId}/>
                                   </Modal>
                                 )}
                         <button className="deleteButton"
-                                onClick={() => dispatch(deleteSingleReview(review.id))}>Delete</button>
+                                onClick={() => deleteReview(review.id)}>Delete</button>
                       </div>
                     : null )
                   : null }

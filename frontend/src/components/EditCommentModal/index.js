@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
+import * as reviewActions from "../../store/reviews";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-function EditCommentModal() {
+function EditCommentModal({ setShowModal, reviewId } ) {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
+  const grabReview = useSelector(state => state.review[reviewId]);
   
-  // CHANGE STATES FOR COMMENTS - CHECK STATE TO FIND FIELDS,
-  // SET USE SELECTOR FOR REVIEWS - CHANGE FORM ENTIRELY
-  // BUILD EDIT ROUTE
-  const [username, setUsername] = useState(sessionUser.username);
-  const [fullName, setFullName] = useState(sessionUser.fullName);
-  const [email, setEmail] = useState(sessionUser.email);
-  const [bio, setBio] = useState(sessionUser.bio);
-  const [imgUrl, setImgUrl] = useState(sessionUser.imgUrl);
+  const [rating, setRating] = useState(grabReview.rating);
+  const [review, setReview] = useState(grabReview.review);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
@@ -23,71 +19,48 @@ function EditCommentModal() {
     setErrors([]);
 
     const payload = {
-      id: sessionUser.id,
-      username,
-      fullName,
-      email,
-      bio,
-      imgUrl
+      id: grabReview.id,
+      userId: sessionUser.id,
+      coffeeId: grabReview.coffeeId,
+      rating,
+      review
     }
+    console.log(payload);
     
-    dispatch(sessionActions.editCurrentUser(payload));
-    history.go(0);
+    dispatch(reviewActions.editOneReview(payload));
+    setShowModal(false);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Full Name:
-        <input
-          type="text"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Bio:
-        <textarea
-        value={bio}
-        onChange={(e) => setBio(e.target.value)}
-        required
-        ></textarea>
-      </label>
-      <label>
-        Avatar URL:
-        <input
-          type="text"
-          value={imgUrl}
-          onChange={(e) => setImgUrl(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+            <ul>
+                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
+            <label>
+                Rating
+                  <select
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
+                    required
+                  >
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+            </label>
+            <label>
+                Review
+                  <textarea
+                    type="textArea"
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    required
+                  />
+            </label>
+            <button type="submit">Submit Review</button>
+        </form>
   );
 }
 

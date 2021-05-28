@@ -32,6 +32,7 @@
 .mainPage__div {
   display: flex;
   width: 100vw;
+  height: fit-content;
   justify-content: center;
 }
 
@@ -54,11 +55,24 @@
   grid-area: b;
 }
 
+.activityFeed__div {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin-bottom: 50px;
+  align-content: center;
+}
+
 .activityFeed__div h1 {
   display: flex;
+  font-size: 40px;
   justify-content: center;
   align-content: center;
-  margin: 30px;
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
 .activityCard__div {
@@ -67,6 +81,7 @@
   background-color: white;
   border: 2px solid black;
   border-radius: 50px;
+  margin: 10px 0;
   height: 35px;
   width: 1100px;
   padding: 20px;

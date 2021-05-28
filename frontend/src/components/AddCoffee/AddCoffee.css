@@ -6,9 +6,28 @@
 }
 
 .addCoffee__form {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
   margin: 40px;
+  background-color: white;
   border: 2px solid black;
   border-radius: 5px;
+  justify-content: center;
+  align-content: center;
+  height: fit-content;
+  padding: 30px;
+}
+
+.addCoffee__form h1 {
+  margin-bottom: 20px;
+}
+
+.flavor__inputs {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 230px;
 }
 
 .addCoffee__form label {

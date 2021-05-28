@@ -41,13 +41,12 @@ function AddCoffee() {
 
     return (
       <div className="addCoffeeContainer__div">
-        <div className="addCoffee__form">
           <form className="addCoffee__form" onSubmit={handleSubmit}>
-              <h1>Add A Coffee Flavor!</h1>
+            <h1>Add Coffee</h1>
               <ul>
                   {errors.map((error, idx) => <li key={idx}>{error}</li>)}
               </ul>
-          <div className="signup__inputs">
+          <div className="flavor__inputs">
                   <label>
                       Flavor Name:
               <input className="flavorName__field input"
@@ -97,7 +96,6 @@ function AddCoffee() {
                   <button className="submit__button button" type="submit" disabled={errors.length > 0}>Submit</button>
           </div>
           </form>
-        </div>
       </div>
       );
     } else {

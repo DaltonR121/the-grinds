@@ -10,6 +10,7 @@
 }
 
 a {
+  color: black;
   text-decoration: none;
 }
 
@@ -19,7 +20,10 @@ a:visited {
 
 .coffeeContainer__div {
   display: flex;
-  height: 100vh;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  height: fit-content;
 }
 
 .coffeeContainer__div h3 {
@@ -42,4 +46,9 @@ a:visited {
   margin: 1em;
   justify-content: space-evenly;
   text-align: center;
+  padding: 10px;
+}
+
+.coffeeCard h2 {
+  font-family: 'Satisfy', cursive;
 }

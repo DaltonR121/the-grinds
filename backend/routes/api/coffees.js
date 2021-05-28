@@ -24,7 +24,10 @@ router.get('/:id/getReviews/', asyncHandler(async (req, res) => {
     where: {
       coffeeId: req.params.id
     },
-    include: [Coffee, User]
+    include: [Coffee, User],
+    order: [
+      ['createdAt', 'ASC'],
+    ],
   })
 
   return res.json(reviews);
@@ -34,7 +37,7 @@ router.get('/:id/getReviews/', asyncHandler(async (req, res) => {
 router.delete(`/:id/delete/`, asyncHandler(async (req, res) => {
   const review = await Review.findByPk(req.params.id);
   review.destroy();
-  res.status(204).end();
+  return res.json();
 }));
 
 router.post('/', asyncHandler(async (req, res) => {
@@ -49,6 +52,23 @@ router.post('/', asyncHandler(async (req, res) => {
 
   res.json(newCoffee);
 }));
+
+// Edit single review route
+router.put('/review/edit', asyncHandler(async (req, res) => {
+  const { id, userId, coffeeId, rating, review } = req.body;
+  console.log(req.body);
+
+  const grabReview = await Review.findByPk(id, {
+    include: [Coffee, User],
+  });
+  console.log(grabReview);
+  grabReview.update({
+    userId, coffeeId, rating, review
+  });
+
+  return res.json(grabReview);
+}));
+
 
 router.post('/createReview', asyncHandler(async (req, res) => {
   const { rating, review, coffeeId, userId } = req.body;
